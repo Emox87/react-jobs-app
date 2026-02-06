@@ -1,15 +1,23 @@
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
 
-
-import Navbar from "./components/Navbar";
+import MainLayout from "./layouts/MainLayout";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<MainLayout />}>
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>,
+    ),
+  );
 
-  return (
-    <div className="">
-     <Navbar />
-    </div>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
